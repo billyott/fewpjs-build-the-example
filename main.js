@@ -4,7 +4,23 @@ const FULL_HEART = '♥'
 
 // Your JavaScript code goes here!
 
-
+document.body.addEventListener('click', function(e){
+  if (e.target.matches(".like-glyph")) {
+    mimicServerCall()
+    .then(function(serverMessage) {
+      if (e.target.textContent === EMPTY_HEART) {
+        e.target.textContent = FULL_HEART
+        e.target.style.color = "red"
+      } else {
+        e.target.textContent = EMPTY_HEART
+        e.target.style.color = ""
+      }
+    })
+    .catch(function(error) {
+      document.getElementById("modal").className = "";
+    })
+  }
+})
 
 
 //------------------------------------------------------------------------------
